@@ -1,9 +1,0 @@
-{
-  "manifest_version": 3,
-  "name": "Hello World Extension",
-  "version": "1.0",
-  "description": "Displays a popup window with the message 'Hello, world!'",
-  "action": {
-    "default_popup": "popup.html"
-  }
-}
