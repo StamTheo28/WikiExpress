@@ -1,0 +1,65 @@
+const searchForm = document.querySelector('#search-form');
+const searchResults = document.querySelector('#search-results');
+
+searchForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const searchTerm = document.querySelector('#search-term').value;
+  const endpointUrl = "https://en.wikipedia.org/w/api.php?";
+  const params = new URLSearchParams({
+    action: "query",
+	titles: searchTerm,
+	prop:'extracts',
+	format:'json',
+	exintro:1,
+	origin: "*"
+  });
+  
+  
+fetch( endpointUrl + params)
+    .then(function(response){return response.json();})
+    .then(function(response) {
+		alert(response.query.search)
+        if (response.query.search[0].title === searchTerm){
+            console.log("Your search page 'Nelson Mandela' exists on English Wikipedia" );
+        }
+    })
+    .catch(error => console.error(error))
+  
+});
+
+
+
+
+
+
+
+
+
+
+  /*
+   
+  fetch(endpointUrl + params+"&origin=*")
+  .then(response => response.json())
+  .then(alert(response.query.search))
+  .catch(error => console.error(error));
+  .then(data => {
+      const searchItems = data.query.search;
+	  alert(searchItems==null)	  
+      searchResults.innerHTML = '';
+	  //alert('Wikipedia Api searching', searchItems)
+	  searchItems.forEach(item => {
+		
+        const searchResult = document.createElement('div');
+        const searchTitle = document.createElement('h2');
+        searchTitle.textContent = item.title;
+        const searchSnippet = document.createElement('p');
+        searchSnippet.innerHTML = item.snippet;
+        searchResult.appendChild(searchTitle);
+        searchResult.appendChild(searchSnippet);
+        searchResults.appendChild(searchResult);
+      });
+    })
+    .catch(error => console.error(error));
+});
+	exlimit:'max&explaintext',
+	*/
