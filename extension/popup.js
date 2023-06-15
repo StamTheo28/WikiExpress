@@ -15,69 +15,95 @@ searchForm.addEventListener('submit', (event) => {
 
 // Function that returns the Wikipedia information of the subject searchTerm
 function getWikiInfo(searchTerm){
-  console.log(searchTerm)
+  console.log("Query inserted by user: "+searchTerm)
 
-  // Create the search params used for the Wikipedia API
-  const params = new URLSearchParams({
-    action: "query",
+  // Initialise html elements
+  searchResults.innerHTML = '';
+  const searchResult = document.createElement('div');
+  const searchTitle = document.createElement('h2');
+  const searchSnippet = document.createElement('p');
+  const searchURL = document.createElement('a')
+  var queryTerm 
+
+
+  // Wikipedia Opensearch api parameters
+  const opensearchparams = new URLSearchParams({
+    action: "opensearch",
+    search: searchTerm,
+    limit: "1",
+    namespace: "0",
     format: "json",
-    prop: "extracts",
-    titles: searchTerm,
-    explaintext:true,
-    exintro:true,
-    exsentence:4,
-    exlimit: "max",
     origin:"*"
   });
-  
-  // Fetch the Wikipedia data
-  fetch( endpointUrl + params)
+
+  // Search wikipedia for the query using opensearch
+  fetch( endpointUrl + opensearchparams)
   .then(function(response){return response.json();})
   .then(function(response) {
+    // Check if the query exists
+    if(response[1].length==1){
 
-      console.log("Successfully made connection with Wikipedia")
-      // Create a new div to append the information
-      const found = Object.keys(response.query.pages);
-      searchResults.innerHTML = '';
-      const searchResult = document.createElement('div');
-      const searchTitle = document.createElement('h2');
-      const searchSnippet = document.createElement('p');
-      const searchURL = document.createElement('a')
+      // Find the most appropriate query term
+      queryTerm = response[1][0] 
+      console.log("Optimal query is: " + queryTerm)
 
-      // if the searchTerm exists in WikiPedia
-      if (found != -1){
+      // wikipedia api parameters
+      const params = new URLSearchParams({
+        action: "query",
+        format: "json",
+        prop: "extracts",
+        titles: queryTerm,
+        explaintext:true,
+        exintro:true,
+        exsentence:4,
+        exlimit: "max",
+        origin:"*"
+      });
+      
+      
+      // Fetch the Wikipedia article using the suggested query 
+      fetch( endpointUrl + params)
+      .then(function(response){return response.json();})
+      .then(function(response) {  
+        console.log("Successfully made connection with Wikipedia.")
         const page = Object.values(response.query.pages)[0];
         const searchItem = page
         const pageLink = "https://en.wikipedia.org/wiki/" + searchTerm
-        // Check if the Wikipedia extract is empty 
         if(page.extract===""){
-          searchTitle.textContent = "Query not found";
-          searchSnippet.innerHTML = "Use the link below to find possible solutions on Wikipedia.";
+          searchTitle.textContent = queryTerm
+          searchSnippet.innerHTML = 'To view information about'+ queryTerm+ ' you need to press the link below.';
+          console.log('Wikipedia article was redirected.')
         } else {
           // Limit the Wikipedia extract to n sentences
           const extract = limitExtractToSentences(searchItem.extract, 4)
           searchTitle.textContent = searchItem.title;
           searchSnippet.innerHTML = extract;
         }
+        
         // Wikipedia url added to the html element
         searchURL.href = pageLink;
         searchURL.text = pageLink;
         searchURL.target = "_blank";
-        console.log("Your search page " + searchTerm +" exists on English Wikipedia" )
-      } else {
-        searchTitle.textContent = 'Query not found in Wikipedia'
-        searchSnippet.innerHTML = 'Check your spelling ☺';
-        console.log('Search Not found in wikipedia')
-      }
-      searchResult.appendChild(searchTitle);
-      searchResult.appendChild(searchSnippet);
-      searchResult.appendChild(searchURL)
-      searchResults.appendChild(searchResult);
-      
+          
+      })
+      .catch(function(error){console.log(error);});
+    }
+    else{
+      searchTitle.textContent = 'Query not found in Wikipedia'
+      searchSnippet.innerHTML = 'Check your spelling ☺';
+      console.log('Search Not found in wikipedia.')
+    }
+
+    // Append all the information on the html element
+    searchResult.appendChild(searchTitle);
+    searchResult.appendChild(searchSnippet);
+    searchResult.appendChild(searchURL)
+    searchResults.appendChild(searchResult);
+    console.log('Results appended to popup.')
   })
   .catch(function(error){console.log(error);});
 
-};
+  };
 
 
 // Function to limit the extract to a specified number of sentences
