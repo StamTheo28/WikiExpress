@@ -11,9 +11,7 @@
 ## Installation
 To download the chrome extension, run the following script from the root of your project's directory:   
 
-'''
-git clone https://github.com/StamTheo28/WikiExpress.git
-'''  
+```git clone https://github.com/StamTheo28/WikiExpress.git```  
 
 or 
 
