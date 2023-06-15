@@ -77,7 +77,7 @@ function getWikiInfo(searchTerm){
           // Limit the Wikipedia extract to n sentences
           const extract = limitExtractToSentences(searchItem.extract, 4)
           searchTitle.textContent = searchItem.title;
-          searchSnippet.innerHTML = extract;
+          searchSnippet.innerHTML = extract+'.';
         }
         
         // Wikipedia url added to the html element
