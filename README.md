@@ -13,7 +13,8 @@ To download the chrome extension, run the following script from the root of your
 
 '''
 git clone https://github.com/StamTheo28/WikiExpress.git
-'''
+'''  
+
 or 
 
 download the [zip file](https://github.com/StamTheo28/WikiExpress/archive/refs/heads/main.zip) directly:
