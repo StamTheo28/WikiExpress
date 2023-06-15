@@ -31,18 +31,21 @@ To install the Chrome extension, please follow these step-by-step instructions o
 ------
 
 ## Demo
-After successfully installing and loading the WikiExpress extension on your Chrome Browser, you can easily access the extension using any of the following methods:
+This section includes a demonstration of how to operate the extension once it has been installed and enabled on the Chrome extension Manager.
 
 ### Step 1: Open Extension
+You can easily access the extension using any of the following methods:
 
-#### Manually open extension (1):
-Open the extension menu on the top right corner and then press on the extension to open it:
-![openExtension](demo/openExtension.png)
-
-#### Use Shortcut keys (2):
+#### Use Shortcut keys (1):
 You can use your keyboar to quickly launch the extension using the keys:  
 - Ctrl + b (Windows OS)  
 - Command + b (Mac OS)
+
+#### Manually open extension (2):
+Open the extension menu on the top right corner and then press on the extension to open it:
+
+![openExtension](demo/openExtension.png)
+
 #### Landing page:
 <img width=350px height=400px src="demo/openedExtension.PNG">
 
