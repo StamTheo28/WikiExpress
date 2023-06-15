@@ -1,5 +1,6 @@
 const searchForm = document.querySelector('#search-form');
 const searchResults = document.querySelector('#search-results');
+
 // Wikipedia API url
 const endpointUrl = "https://en.wikipedia.org/w/api.php?";
 
@@ -46,12 +47,19 @@ function getWikiInfo(searchTerm){
       // if the searchTerm exists in WikiPedia
       if (found != -1){
         const page = Object.values(response.query.pages)[0];
-        console.log(page)
         const searchItem = page
         const pageLink = "https://en.wikipedia.org/wiki/" + searchTerm
-        const extract = limitExtractToSentences(searchItem.extract, 4)
-        searchTitle.textContent = searchItem.title;
-        searchSnippet.innerHTML = extract;
+        // Check if the Wikipedia extract is empty 
+        if(page.extract===""){
+          searchTitle.textContent = "Query not found";
+          searchSnippet.innerHTML = "Use the link below to find possible solutions on Wikipedia.";
+        } else {
+          // Limit the Wikipedia extract to n sentences
+          const extract = limitExtractToSentences(searchItem.extract, 4)
+          searchTitle.textContent = searchItem.title;
+          searchSnippet.innerHTML = extract;
+        }
+        // Wikipedia url added to the html element
         searchURL.href = pageLink;
         searchURL.text = pageLink;
         searchURL.target = "_blank";
@@ -65,7 +73,7 @@ function getWikiInfo(searchTerm){
       searchResult.appendChild(searchSnippet);
       searchResult.appendChild(searchURL)
       searchResults.appendChild(searchResult);
-      searchResults = document.querySelector('#search-results');
+      
   })
   .catch(function(error){console.log(error);});
 
