@@ -7,7 +7,7 @@
     "contextMenus", "activeTab", "scripting"
   ],
   "action": {
-    "default_title": "Launch Wiki Finder with Ctrl+b (Windows)/ Command+b (MacOs).",
+    "default_title": "Launch WikiExpress with Ctrl+b (Windows)/ Command+b (MacOs).",
     "default_popup": "popup.html"
   },
   "commands": {
