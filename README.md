@@ -3,15 +3,16 @@ WikiExpress is a convenient Chrome Extension designed to simplify the process of
 
 ## Installation
 To download the chrome extension, run the following script from the root of your project's directory:  
-
+'''
 git clone https://github.com/StamTheo28/WikiExpress.git
+'''
+or 
 
-or download the zip file directly:
-
-https://github.com/StamTheo28/WikiExpress/archive/refs/heads/main.zip
+download the [zip file](https://github.com/StamTheo28/WikiExpress/archive/refs/heads/main.zip) directly:
 
 
-To install the Chrome extension, please follow these step-by-step instructions on the ![install.md][install.md]
+
+To install the Chrome extension, please follow these step-by-step instructions on the [install.md][install.md]
 
 ## Dependencies
 | Requierment     | Version |
