@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "WikiExpress",
   "version": "1.0",
-  "description": "Quickly traverse Wikipedia by reading a snippet of the toppic",
+  "description": "WikiExpress is a convenient Chrome Extension designed to simplify the process of searching for unfamiliar concepts and definitions using Wikipedia.",
   "permissions": [
     "contextMenus", "activeTab", "scripting"
   ],
@@ -14,6 +14,7 @@
     "16": "images/icon16.png",
     "32": "images/icon32.png",
     "48": "images/icon48.png",
+    "128": "images/icon128.png",
     "192": "images/icon192.png",
     "512": "images/icon512.png"
   },
