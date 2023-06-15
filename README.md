@@ -19,7 +19,7 @@ download the [zip file](https://github.com/StamTheo28/WikiExpress/archive/refs/h
 
 
 
-To install the Chrome extension, please follow these step-by-step instructions on the [install.md][install.md]
+To install the Chrome extension, please follow these step-by-step instructions on the [install.md](install.md)
 
 ------
 
@@ -37,7 +37,7 @@ After successfully installing and loading the WikiExpress extension on your Chro
 
 #### Manually open extension (1):
 Open the extension menu on the top right corner and then press on the extension to open it:
-![openExtension](openExtension.png)
+![openExtension](demo/openExtension.png)
 
 #### Use Shortcut keys (2):
 You can use your keyboar to quickly launch the extension using the keys:  
