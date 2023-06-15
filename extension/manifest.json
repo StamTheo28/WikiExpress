@@ -10,6 +10,11 @@
     "default_title": "Launch WikiExpress with Ctrl+b (Windows)/ Command+b (MacOs).",
     "default_popup": "popup.html"
   },
+  "icons": {
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png"
+  },
   "commands": {
     "_execute_action": {
       "suggested_key": {
