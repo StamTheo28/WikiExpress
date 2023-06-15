@@ -7,8 +7,10 @@
 <p align="center">WikiExpress is a convenient Chrome Extension designed to simplify the process of searching for unfamiliar concepts and definitions using Wikipedia. With WikiExpress, you can effortlessly access and read concise definitions or descriptions of various subjects. If you find a particular topic intriguing, you can seamlessly navigate to the corresponding Wikipedia page. The extension functions as a handy popup within your browser, eliminating the need to open a new tab in Chrome.</p>
 
 
+
 ## Installation
-To download the chrome extension, run the following script from the root of your project's directory:  
+To download the chrome extension, run the following script from the root of your project's directory:   
+
 '''
 git clone https://github.com/StamTheo28/WikiExpress.git
 '''
@@ -20,11 +22,14 @@ download the [zip file](https://github.com/StamTheo28/WikiExpress/archive/refs/h
 
 To install the Chrome extension, please follow these step-by-step instructions on the [install.md][install.md]
 
+------
+
 ## Dependencies
 | Requierment     | Version |
 | ----------- | ----------- |
 | Chrome Browser     | 80+      |
 
+------
 
 ## Demo
 After successfully installing and loading the WikiExpress extension on your Chrome Browser, you can easily access the extension using any of the following methods:
@@ -53,6 +58,6 @@ The only thing that you need to now is to just type the subject(Bubble sort) tha
 
  If your query is not found but similar queries appear to exist in WikiPedia you can proced with the link provided to find out about similar topics. However, you need to becarefull to use correct spelling. Make learning easier and faster.
 
-
+-----
 ### License 
-
+ This project follows an [MIT License](LICENSE)
