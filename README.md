@@ -37,22 +37,26 @@ After successfully installing and loading the WikiExpress extension on your Chro
 
 #### Manually open extension (1):
 Open the extension menu on the top right corner and then press on the extension to open it:
-![openExtension](demo/openExtension.png)  
+<img width=200px height=200px src="demo/openExtension.png">
+ 
 
 #### Use Shortcut keys (2):
 You can use your keyboar to quickly launch the extension using the keys:  
 - Ctrl + b (Windows OS)  
 - Command + b (Mac OS)
 #### Landing page:
-![openedExtension](demo/openedExtension.PNG) 
+<img width=200px height=200px src="demo/openedExtension.PNG">
+
 ### Step 2: How to WikiExpress
 The only thing that you need to now is to just type the subject(Bubble sort) that you want to learn about in the search bar and press enter or click on the search icon and your result will appear right under the search bar.
 
 ##### Search subject (1):
+<img width=200px height=200px src="demo/searchExtension.PNG">
 ![searchExtension](demo/searchExtension.PNG) 
 
 ##### Get Results (2):
-![resultExtension](demo/resultExtension.PNG) 
+<img width=200px height=200px src="demo/resultExtension.PNG">
+
 
 
  If your query is not found but similar queries appear to exist in WikiPedia you can proced with the link provided to find out about similar topics. However, you need to becarefull to use correct spelling. Make learning easier and faster.
