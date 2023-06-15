@@ -97,7 +97,7 @@ body {
       align-items: stretch;
     }
     .container {
-      max-width: 450px;
+      max-width: 425px;
       margin: -20px auto;
       padding: 10px;
       justify-content: center;
@@ -108,7 +108,7 @@ body {
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 15px;
     margin-bottom: 10px;
     }
     
