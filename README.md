@@ -21,15 +21,15 @@ You can use your keyboar to quickly launch the extension using the keys:
 - Ctrl + b (Windows OS)  
 - Command + b (Mac OS)
 #### Landing page:
-![openedExtension](demo/openedExtension.png) 
+![openedExtension](demo/openedExtension.PNG) 
 ### How to wiki
 The only thing that you need to now is to just type the subject(Bubble sort) that you want to learn about in the search bar and press enter or click on the search icon and your result will appear right under the search bar.
 
 ##### Search subject (1):
-![searchExtension](demo/searchExtension.png) 
+![searchExtension](demo/searchExtension.PNG) 
 
 ##### Get Results (2):
-![resultExtension](demo/resultExtension.png) 
+![resultExtension](demo/resultExtension.PNG) 
 
 
 
