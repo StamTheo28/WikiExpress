@@ -33,6 +33,8 @@ function getWikiInfo(searchTerm){
     limit: "1",
     namespace: "0",
     format: "json",
+    profile:'fuzzy',
+    redirects:'resolve',
     origin:"*"
   });
 
@@ -60,7 +62,7 @@ function getWikiInfo(searchTerm){
         origin:"*"
       });
       
-      
+   
       // Fetch the Wikipedia article using the suggested query 
       fetch( endpointUrl + params)
       .then(function(response){return response.json();})
@@ -71,7 +73,7 @@ function getWikiInfo(searchTerm){
         const pageLink = "https://en.wikipedia.org/wiki/" + searchTerm
         if(page.extract===""){
           searchTitle.textContent = queryTerm
-          searchSnippet.innerHTML = 'To view information about'+ queryTerm+ ' you need to press the link below.';
+          searchSnippet.innerHTML = 'To view information about '+ queryTerm+ ' you need to press the link below.';
           console.log('Wikipedia article was redirected.')
         } else {
           // Limit the Wikipedia extract to n sentences
