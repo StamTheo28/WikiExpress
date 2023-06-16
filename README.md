@@ -56,7 +56,6 @@ The only thing that you need to now is to just type the subject(Bubble sort) tha
 
 #### Search subject (1):
 <img width=350px height=400px src="demo/searchExtension.PNG">
-![searchExtension](demo/searchExtension.PNG) 
 
 #### Get Results (2):
 <img width=350px height=400px src="demo/resultExtension.PNG">
