@@ -21,8 +21,10 @@ function getWikiInfo(searchTerm){
   searchResults.innerHTML = '';
   const searchResult = document.createElement('div');
   const searchTitle = document.createElement('h2');
+  const searchImage = document.createElement('img')
   const searchSnippet = document.createElement('p');
   const searchURL = document.createElement('a')
+  searchURL.className = 'more-link'
   var queryTerm 
 
 
@@ -53,7 +55,7 @@ function getWikiInfo(searchTerm){
       const params = new URLSearchParams({
         action: "query",
         format: "json",
-        prop: "extracts",
+        prop: "extracts|pageimages",
         titles: queryTerm,
         explaintext:true,
         exintro:true,
@@ -69,10 +71,11 @@ function getWikiInfo(searchTerm){
       .then(function(response) {  
         console.log("Successfully made connection with Wikipedia.")
         const page = Object.values(response.query.pages)[0];
-        const searchItem = page
-        const pageLink = "https://en.wikipedia.org/wiki/" + searchTerm
+        const searchItem = page;
+        const pageLink = "https://en.wikipedia.org/wiki/" + searchTerm;
+        const imageSource = page.thumbnail.source;
         if(page.extract===""){
-          searchTitle.textContent = queryTerm
+          searchTitle.textContent = queryTerm;
           searchSnippet.innerHTML = 'To view information about '+ queryTerm+ ' you need to press the link below.';
           console.log('Wikipedia article was redirected.')
         } else {
@@ -80,26 +83,29 @@ function getWikiInfo(searchTerm){
           const extract = limitExtractToSentences(searchItem.extract, 4)
           searchTitle.textContent = searchItem.title;
           searchSnippet.innerHTML = extract+'.';
-        }
+          searchImage.src = imageSource;
+          searchImage.alt = queryTerm;
+       }
         
         // Wikipedia url added to the html element
         searchURL.href = pageLink;
-        searchURL.text = pageLink;
+        searchURL.text = "Read more on Wikipedia!";
         searchURL.target = "_blank";
           
       })
       .catch(function(error){console.log(error);});
     }
     else{
-      searchTitle.textContent = 'Query not found in Wikipedia'
+      searchTitle.textContent = 'Query not found in Wikipedia';
       searchSnippet.innerHTML = 'Check your spelling ☺';
       console.log('Search Not found in wikipedia.')
     }
 
     // Append all the information on the html element
     searchResult.appendChild(searchTitle);
+    //searchResult.appendChild(searchImage);
     searchResult.appendChild(searchSnippet);
-    searchResult.appendChild(searchURL)
+    searchResult.appendChild(searchURL);
     searchResults.appendChild(searchResult);
     console.log('Results appended to popup.')
   })
@@ -110,13 +116,8 @@ function getWikiInfo(searchTerm){
 
 // Function to limit the extract to a specified number of sentences
 function limitExtractToSentences(extract, numSentences) {
-  // Split the extract into an array of sentences
   const sentences = extract.split('. ');
-
-  // Take the specified number of sentences
   const limitedSentences = sentences.slice(0, numSentences);
-
-  // Join the limited sentences back into a single string
   const limitedExtract = limitedSentences.join('. ');
 
   return limitedExtract;
