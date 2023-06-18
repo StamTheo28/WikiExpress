@@ -21,6 +21,7 @@ header {
   margin-left: 5%;
   letter-spacing: 1px;
   text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Top Right Close button */
@@ -107,6 +108,7 @@ body {
 
 
 
+
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
@@ -122,7 +124,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0px;
     font-size: 22px;
     margin-right: 10px;
-    display: inline-block;
+    
     }
     
     h3 {

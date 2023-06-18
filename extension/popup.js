@@ -69,16 +69,20 @@ function getWikiInfo(searchTerm){
       fetch( endpointUrl + params)
       .then(function(response){return response.json();})
       .then(function(response) {  
-        console.log("Successfully made connection with Wikipedia.")
         const page = Object.values(response.query.pages)[0];
         const searchItem = page;
         const pageLink = "https://en.wikipedia.org/wiki/" + searchTerm;
-        const imageSource = page.thumbnail.source;
-        if(page.extract===""){
+
+        // Check if the query exists
+        if(page.extract===queryTerm+" may refer to:"){
           searchTitle.textContent = queryTerm;
-          searchSnippet.innerHTML = 'To view information about '+ queryTerm+ ' you need to press the link below.';
-          console.log('Wikipedia article was redirected.')
+          searchSnippet.innerHTML = "Sorry, "+queryTerm+" doesn't exist, follow the link below for suggestions or try again!";
+          console.log('Wikipedia article not found.')
         } else {
+          console.log(page.thumbnail)
+          // Check for image thumbnail and retrieve it
+          const imageSource = getImage(page)
+
           // Limit the Wikipedia extract to n sentences
           const extract = limitExtractToSentences(searchItem.extract, 4)
           searchTitle.textContent = searchItem.title;
@@ -91,6 +95,8 @@ function getWikiInfo(searchTerm){
         searchURL.href = pageLink;
         searchURL.text = "Read more on Wikipedia!";
         searchURL.target = "_blank";
+
+        console.log("Successfully made connection with Wikipedia.")
           
       })
       .catch(function(error){console.log(error);});
@@ -112,6 +118,17 @@ function getWikiInfo(searchTerm){
   .catch(function(error){console.log(error);});
 
   };
+
+
+function getImage(page){
+  // Check for image thumbnail and retrieve it
+  if (page.thumbnail=== undefined){
+    console.log('Article has no image thumbnail.')
+    return "images/icon128.png"; 
+  } else {
+    return page.thumbnail.source; 
+  }
+};
 
 
 // Function to limit the extract to a specified number of sentences

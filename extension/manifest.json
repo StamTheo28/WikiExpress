@@ -2,10 +2,7 @@
   "manifest_version": 3,
   "name": "WikiExpress",
   "version": "1.0",
-  "description": "WikiExpress is a convenient Chrome Extension designed to simplify the process of searching for unfamiliar concepts and definitions using Wikipedia.",
-  "permissions": [
-    "contextMenus", "activeTab", "scripting"
-  ],
+  "description": "A convenient Extension designed to simplify the process of searching for unfamiliar topics using Wikipedia.",
   "action": {
     "default_title": "Launch WikiExpress with Ctrl+b (Windows)/ Command+b (MacOs).",
     "default_popup": "popup.html"
