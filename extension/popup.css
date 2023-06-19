@@ -1,6 +1,8 @@
 /* html style */
 html {
-  font-size: 16px !important
+  font-size: 16px !important;
+  /*box-shadow: 0 0 0 2px #0b3173, 0 0 8px rgba(11, 49, 115, 0.5);*/
+  
 }
 
 /* Header styles */
@@ -21,7 +23,13 @@ header {
   margin-left: 5%;
   letter-spacing: 1px;
   text-transform: uppercase;
+  text-shadow: 2px 2px 2px #021c49, 3px 3px 2px #4d7cc2;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo { 
+  width: 20px;
+  height: auto;
 }
 
 /* Top Right Close button */
@@ -79,7 +87,7 @@ header {
 body {
       width: 450px; 
       height: 400px; 
-      background-color: #F6F6F6;
+      background-color: #f3f3f3;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 14px;
       line-height: 1.6;
@@ -229,4 +237,11 @@ input[type="search"]:focus {
   box-shadow: 0 0 3px 0 #1183d6;
   border-color: #1183d6;
   outline: none;
+}
+
+
+#myList li {
+  padding: 5px;
+  background-color: #f2f2f2;
+  cursor: pointer;
 }

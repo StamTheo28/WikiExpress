@@ -24,6 +24,8 @@ function getWikiInfo(searchTerm){
   const searchImage = document.createElement('img')
   const searchSnippet = document.createElement('p');
   const searchURL = document.createElement('a')
+  var myList = document.createElement("ul");
+  myList.id = "myList";
   searchURL.className = 'more-link'
   var queryTerm 
 
@@ -32,7 +34,7 @@ function getWikiInfo(searchTerm){
   const opensearchparams = new URLSearchParams({
     action: "opensearch",
     search: searchTerm,
-    limit: "1",
+    limit: "5",
     namespace: "0",
     format: "json",
     profile:'fuzzy',
@@ -42,13 +44,14 @@ function getWikiInfo(searchTerm){
 
   // Search wikipedia for the query using opensearch
   fetch( endpointUrl + opensearchparams)
-  .then(function(response){return response.json();})
-  .then(function(response) {
+  .then(function(recommended){return recommended.json();})
+  .then(function(recommended) {
     // Check if the query exists
-    if(response[1].length==1){
+    console.log(recommended)
+    if(recommended[1].length>=1){
 
       // Find the most appropriate query term
-      queryTerm = response[1][0] 
+      queryTerm = recommended[1][0] 
       console.log("Optimal query is: " + queryTerm)
 
       // wikipedia api parameters
@@ -69,18 +72,46 @@ function getWikiInfo(searchTerm){
       fetch( endpointUrl + params)
       .then(function(response){return response.json();})
       .then(function(response) {  
+        // Response object of Wikipedia pages
         const page = Object.values(response.query.pages)[0];
         const searchItem = page;
         const pageLink = "https://en.wikipedia.org/wiki/" + searchTerm;
 
-        // Check if the query exists
+        // Check if the extract of the query exists
         if(page.extract===queryTerm+" may refer to:"){
           searchTitle.textContent = queryTerm;
-          searchSnippet.innerHTML = "Sorry, "+queryTerm+" doesn't exist, follow the link below for suggestions or try again!";
-          console.log('Wikipedia article not found.')
+          // Show not found message
+          searchSnippet.innerHTML = "Sorry, "+searchTerm+" or "+queryTerm+" which is the optimal query doesn't exist. Try again or choose one the recommended options below!";
+          console.log('Wikipedia article extract not found.')
+
+          // Remove item used to search
+          var items = recommended[1].slice(1);
+
+          // Create list items and append to the unordered list
+          items.forEach(function(itemText) {
+            var listItem = document.createElement("li");
+            listItem.textContent = itemText;
+            myList.appendChild(listItem);
+          });
+          
+          // Get all list items
+          var listItems = myList.querySelectorAll("li");
+
+          listItems.forEach(function(item) {
+            item.addEventListener("click", function() {
+              console.log("Clicked item:", item.textContent);
+              getWikiInfo(item.textContent)
+            });
+          });  
+          
+          // Append the list of recommended articles
+          searchResults.appendChild(myList)
+          console.log("Wikipedia recommended list showed")
+
         } else {
-          console.log(page.thumbnail)
+          
           // Check for image thumbnail and retrieve it
+          console.log(page.thumbnail)
           const imageSource = getImage(page)
 
           // Limit the Wikipedia extract to n sentences
@@ -89,14 +120,16 @@ function getWikiInfo(searchTerm){
           searchSnippet.innerHTML = extract+'.';
           searchImage.src = imageSource;
           searchImage.alt = queryTerm;
+
+          // Wikipedia url added to the html element
+          searchURL.href = pageLink;
+          searchURL.text = "Read more on Wikipedia!";
+          searchURL.target = "_blank";
+          // Append the URL in the div
+          searchResult.appendChild(searchURL);
+          console.log("Successfully retrieved Wikipedia extract.")
        }
         
-        // Wikipedia url added to the html element
-        searchURL.href = pageLink;
-        searchURL.text = "Read more on Wikipedia!";
-        searchURL.target = "_blank";
-
-        console.log("Successfully made connection with Wikipedia.")
           
       })
       .catch(function(error){console.log(error);});
@@ -107,11 +140,10 @@ function getWikiInfo(searchTerm){
       console.log('Search Not found in wikipedia.')
     }
 
-    // Append all the information on the html element
+    // Append all the information on the div html element
     searchResult.appendChild(searchTitle);
     //searchResult.appendChild(searchImage);
     searchResult.appendChild(searchSnippet);
-    searchResult.appendChild(searchURL);
     searchResults.appendChild(searchResult);
     console.log('Results appended to popup.')
   })
@@ -120,6 +152,7 @@ function getWikiInfo(searchTerm){
   };
 
 
+// Retrieve the thumbnail image of the Wikipedia Article
 function getImage(page){
   // Check for image thumbnail and retrieve it
   if (page.thumbnail=== undefined){
