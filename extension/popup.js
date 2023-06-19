@@ -8,7 +8,9 @@ const endpointUrl = "https://en.wikipedia.org/w/api.php?";
 searchForm.addEventListener('submit', (event) => {
   event.preventDefault();
   
+  
   const searchTerm = document.querySelector('#search-term').value;
+  
   getWikiInfo(searchTerm)
 
 });
@@ -25,7 +27,7 @@ function getWikiInfo(searchTerm){
   const searchSnippet = document.createElement('p');
   const searchURL = document.createElement('a')
   var myList = document.createElement("ul");
-  myList.id = "myList";
+  //myList.id = "myList";
   searchURL.className = 'more-link'
   var queryTerm 
 
@@ -140,7 +142,7 @@ function getWikiInfo(searchTerm){
       console.log('Search Not found in wikipedia.')
     }
 
-    // Append all the information on the div html element
+    // Append all the information on the html element
     searchResult.appendChild(searchTitle);
     //searchResult.appendChild(searchImage);
     searchResult.appendChild(searchSnippet);
