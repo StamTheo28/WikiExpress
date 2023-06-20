@@ -216,7 +216,7 @@ function getWikiInfo(searchTerm){
 // Checks if the Wikipedia article returned has an empty extract
 function checkExtract(extract, query){
     const substring =  "may refer to:"
-    const emptyStringSize = 30
+    const emptyStringSize = 40
     var modExtract = extract.replace(query, "");
     var size = modExtract.length;
   
