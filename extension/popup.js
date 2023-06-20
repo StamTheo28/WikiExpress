@@ -1,16 +1,50 @@
 const searchForm = document.querySelector('#search-form');
 const searchResults = document.querySelector('#search-results');
 
-// Wikipedia API url
-const endpointUrl = "https://en.wikipedia.org/w/api.php?";
+// Instructions minimizing effect
+var instructionsBox = document.querySelector('.instructions-box');
+var minimizeIcon = document.querySelector('.minimize-icon');
+var maximizeIcon = document.querySelector('.maximize-icon');
+
+minimizeIcon.addEventListener('click', function() {
+  instructionsBox.classList.toggle('minimized');
+  minimizeIcon.style.display = 'none';
+  maximizeIcon.style.display = 'block';
+});
+
+maximizeIcon.addEventListener('click', function() {
+  instructionsBox.classList.remove('minimized');
+  minimizeIcon.style.display = 'block';
+  maximizeIcon.style.display = 'none';
+});
+
+
 
 // listen that retrieves wikipedia information when searchTerm is submitted
 searchForm.addEventListener('submit', (event) => {
   event.preventDefault();
   
-  
   const searchTerm = document.querySelector('#search-term').value;
-  
+
+  // Retrieve instruction p to be removed from html
+  var instr = document.querySelector('#instructions-p');
+  // Check if the <p> element exists
+  if (instr) {
+    // Remove the <p> element from its parent node
+    instr.parentNode.removeChild(instr);
+  }
+
+  // Check if instructions box are minimized
+  if (instructionsBox.classList.contains('minimized')) {
+    console.log('The instruction box is currently minimized');
+  } else {
+    console.log('The box is currently expanded');
+    // Minimize the instruction box
+    instructionsBox.classList.toggle('minimized');
+    minimizeIcon.style.display = 'none';
+    maximizeIcon.style.display = 'block';
+    
+  }
   getWikiInfo(searchTerm)
 
 });
@@ -18,6 +52,8 @@ searchForm.addEventListener('submit', (event) => {
 // Function that returns the Wikipedia information of the subject searchTerm
 function getWikiInfo(searchTerm){
   console.log("Query inserted by user: "+searchTerm)
+  // Wikipedia API url
+  const endpointUrl = "https://en.wikipedia.org/w/api.php?";
 
   // Initialise html elements
   searchResults.innerHTML = '';
@@ -79,20 +115,25 @@ function getWikiInfo(searchTerm){
         const searchItem = page;
         const pageLink = "https://en.wikipedia.org/wiki/" + searchTerm;
 
+
         // Check if the extract of the query exists
-        if(page.extract===queryTerm+" may refer to:"){
-          searchTitle.textContent = queryTerm;
+        if(checkExtract(page.extract, queryTerm)){
+          searchTitle.textContent = "Query not found";
+
           // Show not found message
           searchSnippet.innerHTML = "Sorry, "+searchTerm+" or "+queryTerm+" which is the optimal query doesn't exist. Try again or choose one the recommended options below!";
-          console.log('Wikipedia article extract not found.')
 
-          // Remove item used to search
+          const notFoundTitle = document.createElement('h3');
+          notFoundTitle.textContent = 'Suggested Results:'
+          searchResults.appendChild(notFoundTitle)
+
+          // Remove item used to search from recommendation list
           var items = recommended[1].slice(1);
 
           // Create list items and append to the unordered list
           items.forEach(function(itemText) {
             var listItem = document.createElement("li");
-            listItem.textContent = itemText;
+            listItem.textContent = itemText ;
             myList.appendChild(listItem);
           });
           
@@ -108,7 +149,7 @@ function getWikiInfo(searchTerm){
           
           // Append the list of recommended articles
           searchResults.appendChild(myList)
-          console.log("Wikipedia recommended list showed")
+          console.log("Suggested list: "+myList)
 
         } else {
           
@@ -151,6 +192,24 @@ function getWikiInfo(searchTerm){
   })
   .catch(function(error){console.log(error);});
 
+  };
+
+// Checks if the Wikipedia article returned has an empty extract
+function checkExtract(extract, query){
+    const substring =  "may refer to:"
+    const emptyStringSize = 30
+    var modExtract = extract.replace(query, "");
+    var size = modExtract.length;
+  
+    // check for substring in the extract and smaller than 20 chars
+    if (size<emptyStringSize && modExtract.includes(substring) ){
+      console.log("Extract does not exist, use suggested results")
+      // return true to provided a list of suggestions
+      return true
+    } else {
+      console.log("Extract Exists")
+      return false
+    }
   };
 
 

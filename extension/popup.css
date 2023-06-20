@@ -1,6 +1,7 @@
 /* html style */
 html {
   font-size: 16px !important;
+  font-family: Calibri, sans-serif;
   /*box-shadow: 0 0 0 2px #0b3173, 0 0 8px rgba(11, 49, 115, 0.5);*/
   
 }
@@ -25,11 +26,6 @@ header {
   text-transform: uppercase;
   text-shadow: 2px 2px 2px #021c49, 3px 3px 2px #4d7cc2;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.logo { 
-  width: 20px;
-  height: auto;
 }
 
 /* Top Right Close button */
@@ -129,6 +125,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     h2 {
+    font-family: Arial, Helvetica, sans-serif;
     margin-top: 0px;
     font-size: 22px;
     margin-right: 10px;
@@ -152,18 +149,13 @@ a {
   }
 
 /* Read more button */
-@keyframes unhideLink {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
 a.more-link { 
   opacity: 0;
   animation: unhideLink 0.5s linear 0.25s forwards;
   color: white;
   font-weight: bold;
   font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:  Arial, Helvetica, sans-serif;
   padding: 3px 10px;
   background-color: #1e418a;
   border-radius: 5px; 
@@ -178,6 +170,11 @@ a.more-link:hover {
   border-radius: 0px;
 }
 
+@keyframes unhideLink {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 /* article image */
 img { 
   display: inline-block;
@@ -188,6 +185,67 @@ img {
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+
+/* Typing effect */
+.instructions-box {
+  background-color: #4d7cc2;
+  color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-family: Arial, sans-serif;
+  position: relative;
+  height: auto;
+  max-height: 100%;
+  transition: max-height 0.3s ease;
+  overflow: hidden;
+}
+
+.instructions-box.minimized {
+  max-height: 50px; 
+}
+
+.instructions-box h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.instructions-box p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.instructions-box ol {
+  text-align: left;
+  margin: 0;
+  padding-left: 15px;
+}
+
+.instructions-box li {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.minimize-icon,
+.maximize-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.maximize-icon {
+  display: none;
+}
+
+
+
+
+
 
 /* Search bar */
 form {
@@ -239,29 +297,28 @@ input[type="search"]:focus {
   outline: none;
 }
 
-
-#myList li {
-  padding: 5px;
-  background-color: #f2f2f2;
-  cursor: pointer;
-}
-
+/* List element for recommendation list */
 ul {
   list-style: none;
   padding: 0;
+  cursor: pointer;
   
 }
 
 li {
-  
   margin: 5px;
   padding: 10px;
-  border: 2px solid #ccc;
+  color: #000;
+  border: 2px solid #0b3173 ;
   border-radius: 4px;
-  background-color: #f2f2f2;
+  background-color: #f3f3f3;
   transition: background-color 0.3s;
 }
 
 li:hover {
-  background-color: #ddd;
+  background-color: #3f97d6;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+
