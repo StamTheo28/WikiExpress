@@ -1,6 +1,25 @@
 const searchForm = document.querySelector('#search-form');
 const searchResults = document.querySelector('#search-results');
 
+// Char counter for search bar
+const input = document.getElementById('search-term');
+const charCount = document.getElementById('charCount');
+
+// function to update char counter of earch bar
+input.addEventListener('input', function() {
+  const currentCount = this.value.length;
+  const remainingCount = 100;
+
+  if (currentCount == 100) {
+    this.value = this.value.slice(0, 100); // Truncate the input to 250 characters
+    alert('Maximum character limit (100) reached!');
+  } 
+
+  charCount.textContent = `${currentCount} / ${remainingCount}`;
+});
+
+
+
 // Instructions minimizing effect
 var instructionsBox = document.querySelector('.instructions-box');
 var minimizeIcon = document.querySelector('.minimize-icon');
@@ -26,13 +45,6 @@ searchForm.addEventListener('submit', (event) => {
   
   const searchTerm = document.querySelector('#search-term').value;
 
-  // Retrieve instruction p to be removed from html
-  var instr = document.querySelector('#instructions-p');
-  // Check if the <p> element exists
-  if (instr) {
-    // Remove the <p> element from its parent node
-    instr.parentNode.removeChild(instr);
-  }
 
   // Check if instructions box are minimized
   if (instructionsBox.classList.contains('minimized')) {

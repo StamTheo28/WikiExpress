@@ -16,7 +16,8 @@
 <body>
   <div class="search-div">
     <form id="search-form">
-      <input type="search" id="search-term" name="search-term" placeholder="Search..." required>
+      <input type="search" id="search-term" name="search-term" placeholder="Search..." maxlength="100" required>
+      <div id="charCount"></div>
       <button class='search-button' type="submit"></button>
     </form>
   </div>
@@ -27,11 +28,11 @@
     <h2>Discover instantly with WikiExpress!</h2>
     <p>Unleash a world of knowledge at your fingertips!</p>
     <p>Follow these steps to get started:</p>
-    <ol>
+    <ul class="futuristic-list">
       <li>Step 1: Enter your query in the search bar above</li>
       <li>Step 2: Read about the topic searched</li>
       <li>Step 3: Press the link to directly view the article on Wikipedia</li>
-    </ol>
+    </ul>
   </div>
 
   <div class="container">
