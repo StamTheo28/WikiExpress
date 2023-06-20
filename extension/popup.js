@@ -57,7 +57,14 @@ searchForm.addEventListener('submit', (event) => {
     maximizeIcon.style.display = 'block';
     
   }
-  getWikiInfo(searchTerm)
+  const submitButton = document.getElementById('submit-button');
+
+  if (!submitButton.disabled) {
+    submitButton.disabled = true
+    getWikiInfo(searchTerm)
+    submitButton.disabled = false;
+  }
+
 
 });
 
