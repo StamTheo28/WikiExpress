@@ -33,7 +33,13 @@ To install the Chrome extension, please follow these step-by-step instructions o
 ------
 
 ## Demo
-This section includes a demonstration of how to operate the extension once it has been installed and enabled on the Chrome extension Manager.
+This section includes a video and a step-by-step demonstration of how to operate the extension once it has been installed and enabled on the Chrome extension Manager.
+
+
+
+https://github.com/StamTheo28/WikiExpress/assets/105800807/ee329355-db0f-4499-89da-0494d7ccddb6
+
+
 
 ### Step 1: Open Extension
 You can easily access the extension using any of the following methods:
