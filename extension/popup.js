@@ -25,6 +25,7 @@ var instructionsBox = document.querySelector('.instructions-box');
 var minimizeIcon = document.querySelector('.minimize-icon');
 var maximizeIcon = document.querySelector('.maximize-icon');
 
+
 minimizeIcon.addEventListener('click', function() {
   instructionsBox.classList.toggle('minimized');
   minimizeIcon.style.display = 'none';
@@ -35,6 +36,7 @@ maximizeIcon.addEventListener('click', function() {
   instructionsBox.classList.remove('minimized');
   minimizeIcon.style.display = 'block';
   maximizeIcon.style.display = 'none';
+
 });
 
 

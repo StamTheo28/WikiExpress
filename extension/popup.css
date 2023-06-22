@@ -350,3 +350,18 @@ li:hover {
 }
 
 
+/* footer */
+.page-footer {
+  background-color: #f2f2f2;
+  padding: 15px;
+  text-align: center;
+  bottom: 5px;
+}
+
+.footer-text {
+  color: #333;
+  font-size: 12px;
+  margin: 0;
+}
+
+
