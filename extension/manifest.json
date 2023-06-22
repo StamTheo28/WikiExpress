@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "WikiExpress",
-  "version": "1.0",
+  "version": "1.1",
   "description": "A convenient Extension designed to simplify the process of searching for unfamiliar topics using Wikipedia.",
   "action": {
     "default_title": "Launch WikiExpress with Ctrl+b (Windows)/ Command+b (MacOs).",
